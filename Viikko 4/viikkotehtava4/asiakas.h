@@ -1,6 +1,6 @@
 #ifndef ASIAKAS_H
 #define ASIAKAS_H
-#include <iostream>
+#include <string>
 #include "pankkitili.h"
 #include "luottotili.h"
 using namespace std;
@@ -14,6 +14,7 @@ public:
     bool nosto(double);
     bool luotonMaksu(double);
     bool luotonNosto(double);
+    bool tiliSiirto(double, asiakas&);
 
 private:
     string nimi;

@@ -3,8 +3,9 @@
 Luottotili::Luottotili(string s, double m): Pankkitili(s)
 {
     luottoRaja = m;
+    omistaja = s;
     cout<<"Luottotili luotiin omistajalle "<<omistaja<<
-    ". Luottorajalla "<<m<<endl;
+    ", luottorajalla "<<m<<endl;
 
 }
 
@@ -33,7 +34,7 @@ bool Luottotili::withdraw(double m)
     else
     {
         saldo = saldo - m;
-        cout<<"nostettiin "<<m<<" luottotililta"<<endl;
+        cout<<omistaja<<" nosti "<<m<<" luottotililta. Luottoa jaljella: "<<luottoRaja-m<<endl;
         return true;
     }
 }

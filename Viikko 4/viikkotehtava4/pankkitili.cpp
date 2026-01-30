@@ -2,12 +2,14 @@
 
 Pankkitili::Pankkitili(string s)
 {
-    s = omistaja;
-    cout<<"Pankkitili luotiin omistajalle"<<omistaja<<endl;
+    omistaja = s;
+    saldo = 0;
+    cout<<"Pankkitili luotiin omistajalle "<<omistaja<<endl;
 }
 
 double Pankkitili::getbalance()
 {
+    cout<<omistaja<<" tilin saldo: "<<saldo<<endl;
     return saldo;
 }
 
@@ -21,7 +23,7 @@ bool Pankkitili::deposit(double m)
     else
     {
         saldo = saldo+m;
-        cout<<"tallettiin "<<m<<"tilille"<<endl;
+        cout<<omistaja<<" talletti "<<m<<" tilille"<<endl;
         return true;
     }
 }
@@ -31,13 +33,13 @@ bool Pankkitili::withdraw(double m)
     if(m < 0 || saldo-m<0)
     {
         cout<<"Nosto epaonnistui, yritit nostaa negatiivisen summan tai "
-            >>"nostaa tilin saldon yli."<<endl;
+            <<"nostaa tilin saldon yli."<<endl;
         return false;
     }
     else
     {
         saldo=saldo-m;
-        cout<<"nostettiin "<<m<<"tililta"<<endl;
+        cout<<omistaja<<" nosti "<<m<<" tililta"<<endl;
         return true;
     }
 }
