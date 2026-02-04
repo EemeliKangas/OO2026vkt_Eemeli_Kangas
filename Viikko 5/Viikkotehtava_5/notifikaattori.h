@@ -1,7 +1,7 @@
 #ifndef NOTIFIKAATTORI_H
 #define NOTIFIKAATTORI_H
 #include <string>
-#include <seuraaja.h>
+#include "seuraaja.h"
 
 class Notifikaattori
 {
