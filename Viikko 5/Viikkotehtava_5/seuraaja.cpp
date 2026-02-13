@@ -2,7 +2,8 @@
 
 Seuraaja::Seuraaja(string s)
 {
-    nimi = string s;
+    nimi = s;
+    cout<<"Seuraaja "<<s<<" luotu"<<endl;
 }
 
 string Seuraaja::getNimi()
@@ -12,6 +13,6 @@ string Seuraaja::getNimi()
 
 void Seuraaja::paivitys(string s)
 {
-    cout<<s<<endl;
+    cout<<"Seuraaja "<<nimi<<" sai viestin: "<<s<<endl;
 }
 
