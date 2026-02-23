@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->B0,&QPushButton::clicked,
+    connect(ui->B0,&QPushButton::clicked, //buttons
             this,[this](){handleNumber(ui->B0);});
 
     connect(ui->B1,&QPushButton::clicked,
@@ -37,13 +37,19 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->B9,&QPushButton::clicked,
             this,[this](){handleNumber(ui->B9);});
 
-    connect(ui->clear,&QPushButton::clicked,
+    connect(ui->clear,&QPushButton::clicked, //clear & enter
             this, &MainWindow::handleClear );
+    connect(ui->enter,&QPushButton::clicked,
+            this, &MainWindow::handleEnter );
 
-    connect(enter->enter,&QPushButton::clicked,
-            this, &MainWindow::handleEnter );
-    connect(enter->mul,&QPushButton::clicked,
-            this, &MainWindow::handleEnter );
+    connect(ui->mul,&QPushButton::clicked, //operators
+            this, &MainWindow::handleOperator );
+    connect(ui->add,&QPushButton::clicked,
+            this, &MainWindow::handleOperator );
+    connect(ui->div,&QPushButton::clicked,
+            this, &MainWindow::handleOperator );
+    connect(ui->sub,&QPushButton::clicked,
+            this, &MainWindow::handleOperator );
 }
 
 MainWindow::~MainWindow()
@@ -69,18 +75,51 @@ void MainWindow::handleNumber(QPushButton *ptr)
 
 void MainWindow::handleOperator()
 {
-
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    if(button)
+    {
+        op = button->text();
+        state = 1;
+    }
 }
 
 void MainWindow::handleClear()
 {
-    ui->number1->setText("");
+    ui->number1->setText(""); // asetetaan lineEdit tyhjäksi
     ui->number2->setText("");
     ui->result->setText("");
-    state=0;
+    state=0; //palautetaan state 0, jotta numeroiden syöttö alkaa num1
 }
 
 void MainWindow::handleEnter()
 {
+    double num1 = ui->number1->text().toDouble();
+    double num2 = ui->number2->text().toDouble();
+    double result = 0;
 
+    if(op == "+")
+    {
+        result = num1 + num2;
+    }
+    else if(op == "-")
+    {
+        result = num1 - num2;
+    }
+    else if(op == "*")
+    {
+        result = num1 * num2;
+    }
+    else if(op == "/")
+    {
+        if(num2==0)
+        {
+            ui->result->setText("Error");
+            return;
+        }
+        result = num1 / num2;
+    }
+
+    ui->result->setText(QString::number(result));
+
+    state = 0;
 }

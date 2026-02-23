@@ -24,5 +24,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     int state = 0; //odotetaan ensimmäinen numero
+    QString op; //operaattori
 };
 #endif // MAINWINDOW_H
