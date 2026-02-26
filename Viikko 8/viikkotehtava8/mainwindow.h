@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,16 +18,23 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void timeout();
+
 
 private:
     Ui::MainWindow *ui;
     short player1Time;
     short player2Time;
     short currentPlayer;
-    short gameTime;
     QTimer * pQTimer;
     void updateProgressBar();
     void setGameInfoText(QString, short);
+
+private slots:
+    void handleSwitch();
+    void handleStopStart();
+    void handleTimer();
+
+public slots:
+    void timeout();
 };
 #endif // MAINWINDOW_H
